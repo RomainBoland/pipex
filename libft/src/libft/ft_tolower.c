@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
+/*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 11:26:05 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/20 14:06:14 by rboland          ###   ########.fr       */
+/*   Created: 2024/10/14 11:20:13 by rboland           #+#    #+#             */
+/*   Updated: 2024/10/14 11:20:18 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+int	ft_tolower(int c)
 {
-    // check for 5 args
-    // check if file1 exist and is readable
-    // check if file2 exist, truncate if exist, create it if not
-    // create pipe
+	if (c >= 65 && c <= 90)
+		c += 32;
+	return (c);
 }
+/*
+#include <stdio.h>
+int	main(void)
+{
+	char test;
+	test = ft_tolower('A');
+	printf("%c\n", test);
+	return (0);
+}
+*/

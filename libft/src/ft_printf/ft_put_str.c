@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_put_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
+/*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 11:26:05 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/20 14:06:14 by rboland          ###   ########.fr       */
+/*   Created: 2024/10/28 10:57:07 by rboland           #+#    #+#             */
+/*   Updated: 2024/10/28 10:57:07 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "ft_printf.h"
 
-int main(int argc, char **argv, char **envp)
+int	ft_put_str(char *str)
 {
-    // check for 5 args
-    // check if file1 exist and is readable
-    // check if file2 exist, truncate if exist, create it if not
-    // create pipe
+	if (str == NULL)
+		return (write(1, "(null)", 6));
+	else
+		return (write(1, str, ft_strlen(str)));
 }

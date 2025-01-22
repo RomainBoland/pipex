@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 11:26:05 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/20 14:06:14 by rboland          ###   ########.fr       */
+/*   Created: 2024/10/28 10:24:17 by rboland           #+#    #+#             */
+/*   Updated: 2025/01/20 13:59:55 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int main(int argc, char **argv, char **envp)
-{
-    // check for 5 args
-    // check if file1 exist and is readable
-    // check if file2 exist, truncate if exist, create it if not
-    // create pipe
-}
+# include "libft.h"
+
+int	ft_printf(const char *format, ...);
+int	ft_put_str(char *str);
+int	ft_put_int(int nbr);
+int	ft_put_unsigned(unsigned int nbr);
+int	ft_put_ptr(void *ptr);
+int	ft_put_hexa(unsigned int nbr, int upper_case);
+
+#endif

@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
+/*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 11:26:05 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/20 14:06:14 by rboland          ###   ########.fr       */
+/*   Created: 2024/10/14 11:02:21 by rboland           #+#    #+#             */
+/*   Updated: 2024/10/14 11:02:23 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+int	ft_isprint(int c)
 {
-    // check for 5 args
-    // check if file1 exist and is readable
-    // check if file2 exist, truncate if exist, create it if not
-    // create pipe
+	if (c >= 32 && c <= 126)
+		return (1);
+	else
+		return (0);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	char test = 55;
+	printf("%d\n", ft_isprint(test));
+	return (0);
+}
+*/
