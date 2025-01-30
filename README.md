@@ -37,8 +37,9 @@ cd pipex
 
 # Compile the project
 make
-`
+```
 💻 Usage <a name="usage"></a>
+
 bashCopy./pipex file1 cmd1 cmd2 file2
 This is equivalent to the shell command:
 bashCopy< file1 cmd1 | cmd2 > file2
