@@ -45,8 +45,9 @@ This is equivalent to the shell command:
 bashCopy< file1 cmd1 | cmd2 > file2
 # 🔍 Examples <a name="examples"></a>
 # Example 1: Count number of files
+```bash
 ./pipex infile "ls -l" "wc -l" outfile
-
+```
 # Example 2: Search and count words
 ```bash
 ./pipex file.txt "grep hello" "wc -w" results.txt
@@ -91,10 +92,10 @@ The program handles various error cases:
 
 # 📁 File Structure <a name="file-structure"></a>
 ```bash
-Copypipex/
+pipex/
 ├── includes/
 │   └── pipex.h
-├── src/
+├── srcs/
 │   ├── main.c
 │   ├── utils.c
 │   └── process.c
