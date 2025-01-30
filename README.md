@@ -76,7 +76,7 @@ Executes command with proper redirection
 
 
 
-❗ Error Handling <a name="error-handling"></a>
+# ❗ Error Handling <a name="error-handling"></a>
 The program handles various error cases:
 
 Invalid number of arguments
@@ -86,7 +86,8 @@ Fork failures
 Pipe creation errors
 Memory allocation failures
 
-📁 File Structure <a name="file-structure"></a>
+# 📁 File Structure <a name="file-structure"></a>
+```bash
 Copypipex/
 ├── includes/
 │   └── pipex.h
@@ -96,7 +97,8 @@ Copypipex/
 │   └── process.c
 ├── Makefile
 └── README.md
-🛠️ Technical Details
+```
+# 🛠️ Technical Details
 
 Written in C
 Uses fork(), pipe(), execve()
@@ -104,8 +106,7 @@ Handles file descriptors
 Manages child processes
 Implements proper memory management
 
-📝 Note
+# 📝 Note
 This project follows 42 school's norminette coding style and guidelines.
 
-Made with ❤️ by [Your Name]
 If you found this helpful, please give it a ⭐
