@@ -66,7 +66,17 @@ SRC_PRINTF = src/ft_printf/ft_printf.c \
 SRC_GNL = src/get_next_line/get_next_line_bonus.c \
           src/get_next_line/get_next_line_utils_bonus.c
 
-# Object files with new paths
+# Count total files for progress bar
+TOTAL_FILES := $(words $(SRC_LIBFT) $(SRC_PRINTF) $(SRC_GNL))
+CURRENT_FILE = 0
+
+# Progress bar function
+define update_progress
+    $(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE) + 1))))
+    $(eval PERCENTAGE=$(shell echo $$(($(CURRENT_FILE) * 100 / $(TOTAL_FILES)))))
+    @printf "\r$(CYAN)Progress: [%-50s] %3d%%$(RESET)" "$$(printf '#%.0s' $$(seq 1 $$(($(CURRENT_FILE) * 50 / $(TOTAL_FILES)))))" "$(PERCENTAGE)"
+endef
+
 OBJ_LIBFT = $(patsubst src/libft/%.c,$(OBJ_LIBFT_DIR)%.o,$(SRC_LIBFT))
 OBJ_PRINTF = $(patsubst src/ft_printf/%.c,$(OBJ_PRINTF_DIR)%.o,$(SRC_PRINTF))
 OBJ_GNL = $(patsubst src/get_next_line/%.c,$(OBJ_GNL_DIR)%.o,$(SRC_GNL))
@@ -74,26 +84,26 @@ OBJ_GNL = $(patsubst src/get_next_line/%.c,$(OBJ_GNL_DIR)%.o,$(SRC_GNL))
 OBJ = $(OBJ_LIBFT) $(OBJ_PRINTF) $(OBJ_GNL)
 
 all: create_dirs $(NAME)
-	@printf "\r$(CYAN)$(BOLD)Library compilation completed!$(RESET)\n"
+	@printf "\n$(CYAN)$(BOLD)Library compilation completed!$(RESET)\n"
 
 create_dirs:
 	@mkdir -p $(OBJ_LIBFT_DIR) $(OBJ_PRINTF_DIR) $(OBJ_GNL_DIR)
 
 # Compile rules for each directory
 $(OBJ_LIBFT_DIR)%.o: src/libft/%.c
-	@printf "\r$(CYAN)Compiling libft: $<$(RESET)                    "
 	@$(CC) $(CFLAGS) -c $< -o $@
+	$(call update_progress)
 
 $(OBJ_PRINTF_DIR)%.o: src/ft_printf/%.c
-	@printf "\r$(CYAN)Compiling printf: $<$(RESET)                    "
 	@$(CC) $(CFLAGS) -c $< -o $@
+	$(call update_progress)
 
 $(OBJ_GNL_DIR)%.o: src/get_next_line/%.c
-	@printf "\r$(CYAN)Compiling gnl: $<$(RESET)                    "
 	@$(CC) $(CFLAGS) -c $< -o $@
+	$(call update_progress)
 
 $(NAME): $(OBJ)
-	@printf "\r$(CYAN)$(BOLD)Creating library archive...$(RESET)"
+	@printf "\n$(CYAN)$(BOLD)Creating library archive...$(RESET)"
 	@ar rcs $(NAME) $(OBJ)
 
 clean:
