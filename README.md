@@ -48,6 +48,7 @@ This is equivalent to the shell command:
 ```
 # 🔍 Examples <a name="examples"></a>
 # Example 1: Count number of files
+Obviously, infile has to exist
 ```bash
 ./pipex infile "ls -l" "wc -l" outfile
 ```
@@ -87,7 +88,7 @@ Command Execution
 The program handles various error cases:
 
 - Invalid number of arguments
-- File access errors
+- File access errors (infile should exist)
 - Command not found
 - Fork failures
 - Pipe creation errors
