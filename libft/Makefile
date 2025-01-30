@@ -2,6 +2,15 @@ NAME = libft.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iincludes
+RESET = \033[0m
+CYAN = \033[36m
+BOLD = \033[1m
+
+# Create objects directory paths
+OBJ_DIR = objects/
+OBJ_LIBFT_DIR = $(OBJ_DIR)libft/
+OBJ_PRINTF_DIR = $(OBJ_DIR)printf/
+OBJ_GNL_DIR = $(OBJ_DIR)gnl/
 
 SRC_LIBFT = src/libft/ft_atoi.c \
             src/libft/ft_split.c \
@@ -57,23 +66,44 @@ SRC_PRINTF = src/ft_printf/ft_printf.c \
 SRC_GNL = src/get_next_line/get_next_line_bonus.c \
           src/get_next_line/get_next_line_utils_bonus.c
 
-SRC = $(SRC_LIBFT) $(SRC_PRINTF) $(SRC_GNL)
-OBJ = $(SRC:.c=.o)
+# Object files with new paths
+OBJ_LIBFT = $(patsubst src/libft/%.c,$(OBJ_LIBFT_DIR)%.o,$(SRC_LIBFT))
+OBJ_PRINTF = $(patsubst src/ft_printf/%.c,$(OBJ_PRINTF_DIR)%.o,$(SRC_PRINTF))
+OBJ_GNL = $(patsubst src/get_next_line/%.c,$(OBJ_GNL_DIR)%.o,$(SRC_GNL))
 
-all: $(NAME)
+OBJ = $(OBJ_LIBFT) $(OBJ_PRINTF) $(OBJ_GNL)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+all: create_dirs $(NAME)
+	@printf "\r$(CYAN)$(BOLD)Library compilation completed!$(RESET)\n"
+
+create_dirs:
+	@mkdir -p $(OBJ_LIBFT_DIR) $(OBJ_PRINTF_DIR) $(OBJ_GNL_DIR)
+
+# Compile rules for each directory
+$(OBJ_LIBFT_DIR)%.o: src/libft/%.c
+	@printf "\r$(CYAN)Compiling libft: $<$(RESET)                    "
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_PRINTF_DIR)%.o: src/ft_printf/%.c
+	@printf "\r$(CYAN)Compiling printf: $<$(RESET)                    "
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_GNL_DIR)%.o: src/get_next_line/%.c
+	@printf "\r$(CYAN)Compiling gnl: $<$(RESET)                    "
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@printf "\r$(CYAN)$(BOLD)Creating library archive...$(RESET)"
+	@ar rcs $(NAME) $(OBJ)
 
 clean:
-	rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
+	@printf "$(CYAN)Objects cleaned$(RESET)\n"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@printf "$(CYAN)Library cleaned$(RESET)\n"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re create_dirs
