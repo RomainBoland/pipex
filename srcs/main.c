@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:26:05 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/30 13:03:58 by rboland          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:15:17 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 *   la lisibilite d infile et outfile
 */
 
-int	arg_check(int argc, char **argv, int *infile, int *outfile)
+void	arg_check(int argc, char **argv, int *infile, int *outfile)
 {
 	if (argc != 5)
 	{
@@ -29,7 +29,6 @@ int	arg_check(int argc, char **argv, int *infile, int *outfile)
 	(*outfile) = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if ((*outfile) < 0)
 		error_exit("Error opening outfile");
-	return (0);
 }
 
 /* Exécute la commande avec les arguments appropriés et l'environnement. */
