@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I includes/ -I libft/includes/
 
-SRC = srcs/main.c
+SRC = srcs/main.c srcs/error.c srcs/path.c
 
 OBJ = $(SRC:.c=.o)
 
