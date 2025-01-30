@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 09:50:05 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/10 20:49:34 by rboland          ###   ########.fr       */
+/*   Updated: 2025/01/30 10:51:55 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t size)
 	return (dst);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_gnl(const char *str)
 {
 	size_t	i;
 
@@ -49,8 +49,8 @@ char	*ft_strjoin_gnl(char *s1, const char *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
+	len1 = ft_strlen_gnl(s1);
+	len2 = ft_strlen_gnl(s2);
 	str = malloc((len1 + len2 + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
@@ -69,10 +69,10 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	i = 0;
-	if (start > ft_strlen(s))
+	if (start > ft_strlen_gnl(s))
 		return (ft_strdup_gnl(""));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
+	if (len > ft_strlen_gnl(s + start))
+		len = ft_strlen_gnl(s + start);
 	str = malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);

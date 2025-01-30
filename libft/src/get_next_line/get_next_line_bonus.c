@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 09:47:42 by rboland           #+#    #+#             */
-/*   Updated: 2024/12/01 09:47:42 by rboland          ###   ########.fr       */
+/*   Updated: 2025/01/30 10:52:04 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup_gnl(char *src)
 
 	if (!src)
 		return (NULL);
-	len = ft_strlen(src);
+	len = ft_strlen_gnl(src);
 	i = 0;
 	copy = (char *)malloc((len + 1) * sizeof(char));
 	if (!copy)

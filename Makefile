@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I includes/ -I libft/includes/
 
-SRC = srcs/
+SRC = srcs/main.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -14,7 +14,7 @@ LIBFT = $(LIBFT_DIR)libft.a
 all: $(LIBFT) $(NAME)
 
 $(LIBFT):
-		$(MAKE) -c $(LIBFT_DIR)
+		$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
 		$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT)

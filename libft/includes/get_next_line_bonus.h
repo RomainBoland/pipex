@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 09:50:11 by rboland           #+#    #+#             */
-/*   Updated: 2024/12/01 09:50:11 by rboland          ###   ########.fr       */
+/*   Updated: 2025/01/30 10:52:43 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # endif
 
 void		*ft_memcpy(void *dst, const void *src, size_t size);
-size_t		ft_strlen(const char *str);
+size_t		ft_strlen_gnl(const char *str);
 char		*ft_strjoin_gnl(char *s1, const char *s2);
 char		*ft_substr(const char *s, unsigned int start, size_t len);
 char		*ft_strchr(const char *s, int c);

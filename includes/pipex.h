@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
+/*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:44:04 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/20 14:01:33 by rboland          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:02:12 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include "../libft/includes/libft.h"
 # include <sys/wait.h>
+# include <sys/types.h>
 # include <fcntl.h>
-
-
 
 #endif
