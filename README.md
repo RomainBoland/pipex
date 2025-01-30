@@ -30,13 +30,14 @@ The Pipex project is part of the 42 school curriculum, designed to deepen unders
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/pipex.git
+git clone https://github.com/RomainBoland/pipex.git
 
 # Move to the project directory
 cd pipex
 
 # Compile the project
 make
+`
 💻 Usage <a name="usage"></a>
 bashCopy./pipex file1 cmd1 cmd2 file2
 This is equivalent to the shell command:
