@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
+/*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:26:05 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/30 15:15:17 by rboland          ###   ########.fr       */
+/*   Updated: 2025/03/06 15:43:35 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ void	arg_check(int argc, char **argv, int *infile, int *outfile)
 	}
 	(*infile) = open(argv[1], O_RDONLY);
 	if ((*infile) < 0)
-		error_exit("Error opening infile");
+    {
+        ft_putstr_fd("bash: ", 2);
+        ft_putstr_fd(argv[1], 2);
+        ft_putendl_fd(": No such file or directory", 2);
+        (*infile) = open("/dev/null", O_RDONLY);
+    }
 	(*outfile) = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if ((*outfile) < 0)
 		error_exit("Error opening outfile");

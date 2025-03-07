@@ -1,7 +1,7 @@
 NAME = libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -Wall -Wextra -Werror -Iincludes -fPIE
 RESET = \033[0m
 CYAN = \033[36m
 BOLD = \033[1m
