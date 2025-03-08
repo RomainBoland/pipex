@@ -32,26 +32,40 @@ char	*get_path_from_env(char **envp)
 	return (NULL);
 }
 
-/*	Trouve le chemin complet de la commande dans le PATH,
-*	retourne NULL si non trouvé.
-*/
-
-char	*find_command_path(char *cmd, char **envp)
+int	is_valid_cmd(char *cmd)
 {
-	char	*path;
-	char	**paths;
-	char	*full_path;
-	int		i;
+	if (!cmd || cmd[0] == '\0')
+		return (0);
+	return (1);
+}
 
-	path = get_path_from_env(envp);
-	if (!path)
+char	*build_cmd_path(char *dir_path, char *cmd)
+{
+	char	*temp_path;
+	char	*full_path;
+
+	temp_path = ft_strjoin(dir_path, "/");
+	if (!temp_path)
 		return (NULL);
-	paths = ft_split(path, ':');
+	full_path = ft_strjoin(temp_path, cmd);
+	free(temp_path);
+	return (full_path);
+}
+
+char	*search_cmd_in_paths(char **paths, char *cmd)
+{
+	int		i;
+	char	*full_path;
+
 	i = 0;
 	while (paths && paths[i])
 	{
-		full_path = ft_strjoin(paths[i], "/");
-		full_path = ft_strjoin(full_path, cmd);
+		full_path = build_cmd_path(paths[i], cmd);
+		if (!full_path)
+		{
+			ft_free_split(paths);
+			return (NULL);
+		}
 		if (access(full_path, X_OK) == 0)
 		{
 			ft_free_split(paths);
@@ -60,6 +74,26 @@ char	*find_command_path(char *cmd, char **envp)
 		free(full_path);
 		i++;
 	}
+	return (NULL);
+}
+
+char	*find_command_path(char *cmd, char **envp)
+{
+	char	*path;
+	char	**paths;
+	char	*full_path;
+
+	if (!is_valid_cmd(cmd))
+		return (NULL);
+	path = get_path_from_env(envp);
+	if (!path)
+		return (NULL);
+	paths = ft_split(path, ':');
+	if (!paths)
+		return (NULL);
+	full_path = search_cmd_in_paths(paths, cmd);
+	if (full_path)
+		return (full_path);
 	ft_free_split(paths);
 	return (NULL);
 }

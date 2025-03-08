@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
+/*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:44:04 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/30 15:33:19 by rboland          ###   ########.fr       */
+/*   Updated: 2025/03/08 10:56:41 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ typedef struct s_files
 	int	outfile;
 }	t_files;
 
+// exec.c
+void    execute_cmd(char *cmd, char **envp);
+
 // error.c
 void	error_exit(char *msg);
 void	ft_free_split(char **tab);
 
 // path.c
 char	*find_command_path(char *cmd, char **envp);
-char	*get_path_from_env(char **envp);
 
 #endif

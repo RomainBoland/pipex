@@ -7,7 +7,7 @@ MINECRAFT_GREEN = \033[38;5;70m
 RESET = \033[0m
 BOLD = \033[1m
 
-SRC = srcs/main.c srcs/error.c srcs/path.c
+SRC = srcs/main.c srcs/error.c srcs/path.c srcs/exec.c
 
 # Create objects directory path
 OBJ_DIR = objects/

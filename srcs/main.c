@@ -6,14 +6,14 @@
 /*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:26:05 by rboland           #+#    #+#             */
-/*   Updated: 2025/03/06 15:43:35 by rboland          ###   ########.fr       */
+/*   Updated: 2025/03/08 11:14:25 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-/*  Verifie si le nombre d argument est correcte ainsi que
-*   la lisibilite d infile et outfile
+/*  Check numbers of args and also if we can open
+*   infile and outfile. if outfile doesnt exist, it creates it
 */
 
 void	arg_check(int argc, char **argv, int *infile, int *outfile)
@@ -25,40 +25,19 @@ void	arg_check(int argc, char **argv, int *infile, int *outfile)
 	}
 	(*infile) = open(argv[1], O_RDONLY);
 	if ((*infile) < 0)
-    {
-        ft_putstr_fd("bash: ", 2);
-        ft_putstr_fd(argv[1], 2);
-        ft_putendl_fd(": No such file or directory", 2);
-        (*infile) = open("/dev/null", O_RDONLY);
-    }
+	{
+		ft_putstr_fd(argv[1], STDERR_FILENO);
+		ft_putendl_fd(": No such file or directory", STDERR_FILENO);
+		(*infile) = open("/dev/null", O_RDONLY);
+	}
 	(*outfile) = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if ((*outfile) < 0)
 		error_exit("Error opening outfile");
 }
 
-/* Exécute la commande avec les arguments appropriés et l'environnement. */
-
-void	execute_cmd(char *cmd, char **envp)
-{
-	char	**args;
-	char	*cmd_path;
-
-	args = ft_split(cmd, ' ');
-	if (!args)
-		error_exit("malloc failed");
-	cmd_path = find_command_path(args[0], envp);
-	if (!cmd_path)
-	{
-		ft_putstr_fd("command not found: ", 2);
-		ft_putendl_fd(args[0], 2);
-		exit(EXIT_FAILURE);
-	}
-	execve(cmd_path, args, envp);
-	error_exit("execve failed");
-}
-
-/*	Configure les descripteurs de fichiers pour 
-*	les processus enfants
+/*	Configure fd and replace via dup2 and
+*	close files we dont need anymore and then
+*	execute command
 */
 
 void	handle_child(int fd_in, int fd_out, char *cmd, char **envp)
@@ -70,7 +49,8 @@ void	handle_child(int fd_in, int fd_out, char *cmd, char **envp)
 	execute_cmd(cmd, envp);
 }
 
-/*	Cree et gere les processus enfants
+/*	Create child processes with fork and call handle_child in each
+*	process with adapted fd to link pipe and files
 */
 
 void	process_children(int *pipe_fd, char **argv, char **envp, t_files files)
@@ -99,6 +79,9 @@ void	process_children(int *pipe_fd, char **argv, char **envp, t_files files)
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
 }
+
+/*	Create de pipe and calls children.
+*/
 
 int	main(int argc, char **argv, char **envp)
 {
