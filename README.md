@@ -48,7 +48,6 @@ This is equivalent to the shell command:
 ```
 # 🔍 Examples <a name="examples"></a>
 # Example 1: Count number of files
-Obviously, infile has to exist
 ```bash
 ./pipex infile "ls -l" "wc -l" outfile
 ```
